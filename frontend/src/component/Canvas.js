@@ -18,8 +18,8 @@ const Canvas = class extends Component {
                 });
         };
         const styles = {
-            border: "0.0625rem solid #9c9c9c",
-            borderRadius: "0.25rem",
+            border: "0.25rem solid #9c9c9c",
+            borderRadius: "0.5rem",
         };
 
         return (
