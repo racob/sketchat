@@ -40,7 +40,7 @@ const Home = () => {
                         </div>
                     </div>
                     <Link 
-                        to={`/${roomName}`}
+                        to={`/${roomName.replace(/\s/g, '_')}`}
                         type="submit"
                         className="w-full justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                     >
