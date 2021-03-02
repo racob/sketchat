@@ -5,9 +5,9 @@ const Chatbox = class extends Component {
         this.messagesEnd.scrollIntoView({ behavior: "smooth" });
     }
     
-    componentDidMount() {
-        this.scrollToBottom();
-    }
+    // componentDidMount() {
+    //     this.scrollToBottom();
+    // }
     
     componentDidUpdate() {
         setTimeout(()=>{this.scrollToBottom()},1);
@@ -16,21 +16,27 @@ const Chatbox = class extends Component {
 
     render() {
         return(
-            <div className="flex-grow overflow-auto ">
+            <div className="is-flex-grow-1 overflow-auto has-background-light">
                 {this.props.messages.map((message, i) => {
                     if(message.ownedByCurrentUser)
                         return (
-                            <div key={i} className="w-full flex flex-row justify-end my-3">
-                                <img src={message.body} className="w-3/5 border-4 border-blue-500 rounded-xl mr-3"/>
+                            <div key={i} className="panel is-primary m-4 has-background-white">
+                                <p className="panel-heading has-text-right is-size-6">
+                                    User
+                                </p>
+                                <img src={message.body}/>
                             </div>
                         )
                     else return (
-                        <div key={i} className="w-full flex flex-row justify-start my-3">
-                            <img src={message.body} className="w-3/5 border-4 border-green-500 rounded-xl ml-3"/>
+                        <div key={i} className="panel is-info m-4 has-background-white">
+                            <p className="panel-heading is-size-6">
+                                User
+                            </p>
+                            <img src={message.body}/>
                         </div>
                     )
                 })}
-                <div className="clear-both" ref={(el) => { this.messagesEnd = el; }}></div>
+                <div className="is-invisible" ref={(el) => { this.messagesEnd = el; }}></div>
             </div>
         );
     }

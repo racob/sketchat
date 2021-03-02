@@ -1,5 +1,7 @@
 import { Component, createRef } from "react";
 import { ReactSketchCanvas } from "react-sketch-canvas";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 const Canvas = class extends Component {
     constructor(props) {
@@ -23,26 +25,30 @@ const Canvas = class extends Component {
         };
 
         return (
-            <div className="w-full py-4 px-2 bg-gray-100 flex flex-col space-y-4">
+            <div className="px-4 pb-4 has-background-dark is-flex is-flex-direction-column">
+                <button
+                    onClick={this.props.toggleModal}
+                    className="button is-dark"
+                >
+                    <span className="icon">
+                        <FontAwesomeIcon icon={faChevronDown} />
+                    </span>
+                </button>
                 <ReactSketchCanvas
                     ref={this.canvas}
                     style={styles}
                     strokeWidth={5}
                     strokeColor="black"
                 />
-                <div className="flex flex-row justify-between space-x-5">
-                <button
-                    onClick={this.props.toggleModal}
-                    className="py-2 px-4 text-sm rounded font-medium text-red-600 border border-red-600 hover:text-white hover:bg-red-600 focus:outline-none"
-                >
-                    Hide
-                </button>
-                <button
-                    onClick={handleSendImage}
-                    className="py-2 px-4 text-sm rounded font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
-                >
-                    Send
-                </button>
+                <div className="mt-4 is-flex is-justify-content-center">
+                    <button
+                        onClick={handleSendImage}
+                        className="button is-info"
+                    >
+                        <span className="icon">
+                            <FontAwesomeIcon icon={faPaperPlane} />
+                        </span>
+                    </button>
                 </div>
             </div>
         )

@@ -12,41 +12,45 @@ const Home = () => {
         <div className="hero is-fullheight is-centered">
             <div className="hero-body has-text-centered">
                 <div className="container">
-                    <div className="m-5">
-                        <h2 className="title is-size-2">Sketchat</h2>
-                        <p className="subtitle">Sketch your chat</p>
-                        <div className="field">
-                            <div className="control">
-                                <input
-                                    id="nickname" 
-                                    name="nickname" 
-                                    type="text" 
-                                    className="input"
-                                    placeholder="Nickname"
-                                />
+                    <form>
+                        <div className="m-5">
+                            <h2 className="title is-size-2">Sketchat</h2>
+                            <p className="subtitle">Sketch your chat</p>
+                            <div className="field">
+                                <div className="control">
+                                    <input
+                                        id="nickname" 
+                                        name="nickname" 
+                                        type="text" 
+                                        className="input"
+                                        placeholder="Nickname"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="field">
-                            <div className="control">
-                                <input
-                                    id="roomId"
-                                    name="roomId"
-                                    type="text"
-                                    value={roomName}
-                                    placeholder="Room name"
-                                    onChange={handleRoomNameChange}
-                                    required
-                                    className="input"
-                                />
+                            <div className="field">
+                                <div className="control">
+                                    <input
+                                        id="roomId"
+                                        name="roomId"
+                                        type="text"
+                                        value={roomName}
+                                        placeholder="Room name"
+                                        onChange={handleRoomNameChange}
+                                        autoComplete="off"
+                                        required
+                                        className="input"
+                                    />
+                                </div>
                             </div>
+                            <Link to={`/${roomName.replace(/\s/g, '_')}`} >
+                                <button
+                                    type="submit"
+                                    className="button is-info is-fullwidth mt-5 has-text-weight-medium">
+                                    Start chatting!
+                                </button>
+                            </Link>
                         </div>
-                        <Link to={`/${roomName.replace(/\s/g, '_')}`} >
-                            <button
-                                className="button is-primary is-fullwidth mt-5 has-text-weight-medium">
-                                Start chatting!
-                            </button>
-                        </Link>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
