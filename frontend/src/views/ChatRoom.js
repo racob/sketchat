@@ -25,14 +25,14 @@ const ChatRoom = (props) => {
     }, [dataURI]);
 
     return(
-        <div className="h-screen flex items-center justify-center bg-gray-800 lg:py-12 lg:px-48">
-            <div className="w-full h-full bg-white shadow lg:rounded overflow-hidden flex flex-col">
+        <div className="">
+            <div className="">
                 <Chatbox messages={messages}/>
                 { isShowCanvas && <Canvas className="invisible" handleDataURI={handleDataURI} toggleModal={toggleShowCanvas}/>}
                 { !isShowCanvas &&
                     <button
                         onClick={toggleShowCanvas}
-                        className="w-full justify-center py-2 px-4 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                        className="">
                         Sketch
                     </button>
                 }
