@@ -10,5 +10,14 @@ a chatting app that utilizes drawing canvas as its main feature of conversation
 
 1. Clone the repo
 2. Go to `frontend/` and run `npm install`
-3. `npm start` to run the react server in `PORT=3000`
-4. `node server.js` to run the socket.io server in `PORT=4000`
+~~3. `npm start` to run the react server in `PORT=3000`~~
+~~4. `node server.js` to run the socket.io server in `PORT=4000`~~
+3. Enter `npm run dev` to run the react server in `PORT=3000` with other dependencies
+
+## NPM Scripts
+Enter `npm run [script]` to run various commands on bash. `[script]` includes:
+- `dev`: run react server, node server, and node-sass
+- `start`: run react server
+- `css-watch`: run node-sass to watch for changes and compile on style.scss
+
+More scripts in the `package.json`
