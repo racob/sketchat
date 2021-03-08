@@ -35,7 +35,7 @@ const ChatRoom = (props) => {
             { !isShowCanvas &&
                 <button
                     onClick={toggleShowCanvas}
-                    className="button is-info is-medium is-absolute is-pulled-right"
+                    className="button is-info is-medium is-absolute is-pulled-right is-radiusless"
                 >
                     <span className="icon is-medium is-rounded">
                         <FontAwesomeIcon icon={faPencilAlt} />
