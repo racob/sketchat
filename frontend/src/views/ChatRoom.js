@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import Canvas from "../component/Canvas";
 import Chatbox from "../component/Chatbox";
+import Navbar from "../component/Navbar";
 import useChat from '../utilities/useChat';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 const ChatRoom = (props) => {
     const { roomId } = props.match.params; // Gets roomId from URL
@@ -22,21 +25,23 @@ const ChatRoom = (props) => {
             sendMessage(dataURI);
             setDataURI('');
         }
-    }, [dataURI]);
+    }, [dataURI,sendMessage]);
 
     return(
-        <div className="h-screen flex items-center justify-center bg-gray-800 lg:py-12 lg:px-48">
-            <div className="w-full h-full bg-white shadow lg:rounded overflow-hidden flex flex-col">
-                <Chatbox messages={messages}/>
-                { isShowCanvas && <Canvas className="invisible" handleDataURI={handleDataURI} toggleModal={toggleShowCanvas}/>}
-                { !isShowCanvas &&
-                    <button
-                        onClick={toggleShowCanvas}
-                        className="w-full justify-center py-2 px-4 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
-                        Sketch
-                    </button>
-                }
-            </div>
+        <div className="is-flex is-flex-direction-column is-clipped h-screen max-h-screen">
+            <Navbar roomId={roomId} />
+            <Chatbox messages={messages}/>
+            { isShowCanvas && <Canvas handleDataURI={handleDataURI} toggleModal={toggleShowCanvas}/>}
+            { !isShowCanvas &&
+                <button
+                    onClick={toggleShowCanvas}
+                    className="button is-info is-medium is-absolute is-pulled-right"
+                >
+                    <span className="icon is-medium is-rounded">
+                        <FontAwesomeIcon icon={faPencilAlt} />
+                    </span>
+                </button>
+            }
         </div>
     );
 };

@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+//Update bulma variables
+
+$panel-heading-padding: 0.3rem 1em;
+$panel-margin: 0;
+
+//Custom classes
+button.button.is-round {
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.max-h-screen {
+    max-height: 100vh;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+@import "../../node_modules/bulma/bulma.sass";
