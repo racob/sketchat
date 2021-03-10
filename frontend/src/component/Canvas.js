@@ -61,6 +61,7 @@ const Canvas = class extends Component {
                 </button>
                 <ReactSketchCanvas
                     ref={this.canvas}
+                    height={window.innerHeight * 0.27}
                     style={styles}
                     strokeWidth={this.state.strokeWidth}
                     strokeColor="black"
