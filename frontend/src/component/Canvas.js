@@ -1,13 +1,17 @@
 import { Component, createRef } from "react";
 import { ReactSketchCanvas } from "react-sketch-canvas";
+import { CirclePicker } from "react-color";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faChevronDown, faUndoAlt, faRedoAlt, faPencilAlt, faEraser} from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faChevronDown, faUndoAlt, faRedoAlt, faPencilAlt, faEraser, faPalette} from '@fortawesome/free-solid-svg-icons';
 
 const Canvas = class extends Component {
     constructor(props) {
         super(props);
         this.canvas = createRef();
-        this.state = {strokeWidth: 4};
+        this.state = {
+            strokeWidth: 4,
+            strokeColor: "black"
+        };
     };
 
     render() {
@@ -48,6 +52,9 @@ const Canvas = class extends Component {
             this.setState({strokeWidth: event.target.value});
         };
         
+        const handleColorChange = (color, event) => {
+            this.setState({ strokeColor: color.hex});
+        };
 
         return (
             <div className="px-4 pb-4 has-background-dark is-flex is-flex-direction-column">
@@ -64,7 +71,7 @@ const Canvas = class extends Component {
                     height={window.innerHeight * 0.27}
                     style={styles}
                     strokeWidth={this.state.strokeWidth}
-                    strokeColor="black"
+                    strokeColor={this.state.strokeColor}
                 />
                 <div className="mt-4 field is-grouped">
                     <div className="control">
@@ -84,6 +91,16 @@ const Canvas = class extends Component {
                         >
                             <span className="icon">
                                 <FontAwesomeIcon icon={faEraser} />
+                            </span>
+                        </button>
+                    </div>
+                    <div className="control">
+                        <button
+                            onClick={handlePencil}
+                            className="button is-info is-light"
+                        >
+                            <span className="icon">
+                                <FontAwesomeIcon icon={faPalette} />
                             </span>
                         </button>
                     </div>
@@ -137,6 +154,7 @@ const Canvas = class extends Component {
                         </button>
                     </div>
                 </div>
+                <CirclePicker onChangeComplete={handleColorChange}/>
             </div>
         )
     }
