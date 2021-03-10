@@ -9,6 +9,7 @@ const Canvas = class extends Component {
         super(props);
         this.canvas = createRef();
         this.state = {
+            isShowingColor: false,
             strokeWidth: 4,
             strokeColor: "black"
         };
@@ -20,6 +21,27 @@ const Canvas = class extends Component {
             border: "0.25rem solid #9c9c9c",
             borderRadius: "0.5rem",
         };
+
+        const colors = [
+            "#000000", 
+            "#e91e63", 
+            "#9c27b0", 
+            "#673ab7", 
+            "#3f51b5", 
+            "#2196f3", 
+            "#03a9f4", 
+            "#00bcd4", 
+            "#009688", 
+            "#4caf50", 
+            "#8bc34a", 
+            "#cddc39", 
+            "#ffeb3b", 
+            "#ffc107", 
+            "#ff9800", 
+            "#ff5722", 
+            "#795548", 
+            "#607d8b"
+        ];
 
         const handleSendImage = () => {
             this.canvas.current
@@ -54,6 +76,10 @@ const Canvas = class extends Component {
         
         const handleColorChange = (color, event) => {
             this.setState({ strokeColor: color.hex});
+        };
+
+        const toggleColorShow = () => {
+            this.setState({ isShowingColor: !this.state.isShowingColor });
         };
 
         return (
@@ -96,7 +122,7 @@ const Canvas = class extends Component {
                     </div>
                     <div className="control">
                         <button
-                            onClick={handlePencil}
+                            onClick={toggleColorShow}
                             className="button is-info is-light"
                         >
                             <span className="icon">
@@ -105,6 +131,8 @@ const Canvas = class extends Component {
                         </button>
                     </div>
                 </div>
+                { !this.state.isShowingColor &&
+                <div>
                 <div className="field is-grouped">
                     <div className="control">
                         <input
@@ -154,7 +182,9 @@ const Canvas = class extends Component {
                         </button>
                     </div>
                 </div>
-                <CirclePicker onChangeComplete={handleColorChange}/>
+                </div>
+                }
+                {this.state.isShowingColor && <CirclePicker colors={colors} onChangeComplete={handleColorChange}/>}
             </div>
         )
     }
