@@ -2,7 +2,7 @@ import { Component, createRef } from "react";
 import { ReactSketchCanvas } from "react-sketch-canvas";
 import { CirclePicker } from "react-color";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faChevronDown, faUndoAlt, faRedoAlt, faPencilAlt, faEraser, faPalette} from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faChevronDown, faUndoAlt, faRedoAlt, faPencilAlt, faEraser, faPalette, faTimes} from '@fortawesome/free-solid-svg-icons';
 
 const Canvas = class extends Component {
     constructor(props) {
@@ -54,6 +54,10 @@ const Canvas = class extends Component {
                 });
         };
 
+        const handleClear = () => {
+            this.canvas.current.clearCanvas();
+        };
+
         const handleUndo = () => {
             this.canvas.current.undo();
         };
@@ -99,42 +103,36 @@ const Canvas = class extends Component {
                     strokeWidth={this.state.strokeWidth}
                     strokeColor={this.state.strokeColor}
                 />
-                <div className="mt-4 field is-grouped">
-                    <div className="control">
-                        <button
-                            onClick={handlePencil}
-                            className="button is-info is-light"
-                        >
-                            <span className="icon">
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                            </span>
-                        </button>
-                    </div>
-                    <div className="control">
-                        <button
-                            onClick={handleEraser}
-                            className="button is-info is-light"
-                        >
-                            <span className="icon">
-                                <FontAwesomeIcon icon={faEraser} />
-                            </span>
-                        </button>
-                    </div>
-                    <div className="control">
-                        <button
-                            onClick={toggleColorShow}
-                            className="button is-info is-light"
-                        >
-                            <span className="icon">
-                                <FontAwesomeIcon icon={faPalette} />
-                            </span>
-                        </button>
-                    </div>
+                <div className="mt-4 is-flex is-justify-content-space-between">
+                    <button
+                        onClick={handlePencil}
+                        className="button is-info is-light"
+                    >
+                        <span className="icon">
+                            <FontAwesomeIcon icon={faPencilAlt} />
+                        </span>
+                    </button>
+                    <button
+                        onClick={handleEraser}
+                        className="button is-info is-light"
+                    >
+                        <span className="icon">
+                            <FontAwesomeIcon icon={faEraser} />
+                        </span>
+                    </button>
+                    <button
+                        onClick={toggleColorShow}
+                        className="button is-info is-light"
+                    >
+                        <span className="icon">
+                            <FontAwesomeIcon icon={faPalette} />
+                        </span>
+                    </button>
+                    
                 </div>
                 { !this.state.isShowingColor &&
                 <div>
-                <div className="field is-grouped">
-                    <div className="control">
+                    <div className="is-flex is-justify-content-space-around is-align-items-center">
                         <input
                             id="sliderWithValue"
                             className="slider is-info is-circle is-medium is-fullwidth" 
@@ -145,33 +143,39 @@ const Canvas = class extends Component {
                             type="range"
                             onChange={handleStrokeWidthChange}
                         />
+                        <p className="has-text-light ml-4 is-size-5">{this.state.strokeWidth}</p>
                     </div>
-                    <div className="control">
-                        <p className="has-text-light">{this.state.strokeWidth}</p>
-                    </div>
-                </div>
-                <div className="mt-4 field is-grouped">
-                    <div className="control">
+                    <div className="is-flex is-justify-content-space-between">
                         <button
-                            onClick={handleUndo}
-                            className="button is-info is-light"
+                            onClick={handleClear}
+                            className="button is-danger is-light    "
                         >
                             <span className="icon">
-                                <FontAwesomeIcon icon={faUndoAlt} />
+                                <FontAwesomeIcon icon={faTimes} />
                             </span>
                         </button>
-                    </div>
-                    <div className="control">
-                        <button
-                            onClick={handleRedo}
-                            className="button is-info is-light"
-                        >
-                            <span className="icon">
-                                <FontAwesomeIcon icon={faRedoAlt} />
-                            </span>
-                        </button>
-                    </div>
-                    <div className="control">
+                        <div className="field has-addons">
+                            <p className="control">
+                                <button
+                                    onClick={handleUndo}
+                                    className="button is-info is-light"
+                                >
+                                    <span className="icon">
+                                        <FontAwesomeIcon icon={faUndoAlt} />
+                                    </span>
+                                </button>
+                            </p>
+                            <p className="control">
+                                <button
+                                    onClick={handleRedo}
+                                    className="button is-info is-light"
+                                >
+                                    <span className="icon">
+                                        <FontAwesomeIcon icon={faRedoAlt} />
+                                    </span>
+                                </button>
+                            </p>
+                        </div>
                         <button
                             onClick={handleSendImage}
                             className="button is-info"
@@ -182,9 +186,12 @@ const Canvas = class extends Component {
                         </button>
                     </div>
                 </div>
-                </div>
                 }
-                {this.state.isShowingColor && <CirclePicker colors={colors} onChangeComplete={handleColorChange}/>}
+                {this.state.isShowingColor &&
+                    <div className="mt-4 is-flex is-justify-content-center">
+                        <CirclePicker colors={colors} onChangeComplete={handleColorChange}/>
+                    </div>
+                }
             </div>
         )
     }
