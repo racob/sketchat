@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
     const [roomName, setRoomName] = useState("");
+    const [username, setUsername] = useState("");
     
     const handleRoomNameChange = (event) => {
         setRoomName(event.target.value);
+    };
+
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
     };
 
     return (
@@ -24,6 +29,10 @@ const Home = () => {
                                         type="text" 
                                         className="input"
                                         placeholder="Nickname"
+                                        value={username}
+                                        onChange={handleUsernameChange}
+                                        autoComplete="off"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -42,7 +51,7 @@ const Home = () => {
                                     />
                                 </div>
                             </div>
-                            <Link to={`/${roomName.replace(/\s/g, '_')}`} >
+                            <Link to={`/${roomName.replace(/\s/g, '_')}/${username.replace(/\s/g, '_')}`} >
                                 <button
                                     type="submit"
                                     className="button is-info is-fullwidth mt-5 has-text-weight-medium">

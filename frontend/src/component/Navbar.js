@@ -6,7 +6,7 @@ const Navbar = (props) => {
         <nav className="navbar is-info" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a href="#" className="navbar-item">
-                    <p className="title is-size-4 has-text-light">Room: {`${props.roomId.replace(/_/g,' ')}`}</p>
+                    <p className="title is-size-4 has-text-light">{`${props.roomId.replace(/_/g,' ')}`}</p>
                 </a>
                 <a
                     role="button" 

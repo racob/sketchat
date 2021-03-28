@@ -21,7 +21,7 @@ const Chatbox = class extends Component {
                         return (
                             <div key={i} className="panel is-primary m-4 has-background-white is-flex is-flex-direction-column">
                                 <p className="panel-heading has-text-right is-size-6">
-                                    User
+                                    {message.username}
                                 </p>
                                 <img src={message.body}/>
                             </div>
@@ -30,7 +30,7 @@ const Chatbox = class extends Component {
                         return (
                             <div key={i} className="panel is-info m-4 has-background-white is-flex is-flex-direction-column">
                                 <p className="panel-heading is-size-6">
-                                    User
+                                    {message.username}
                                 </p>
                                 <img src={message.body}/>
                             </div>
