@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 const ChatRoom = (props) => {
-    const { roomId } = props.match.params; // Gets roomId from URL
-    const {messages, sendMessage} = useChat(roomId);
-    const [dataURI, setDataURI] = useState('');
-    const [isShowCanvas, setShowCanvas] = useState(false);
+    const { roomId, username} = props.match.params; // Gets roomId from URL
+    const { messages, sendMessage } = useChat(roomId);
+    const [ dataURI, setDataURI ] = useState('');
+    const [ isShowCanvas, setShowCanvas ] = useState(false);
 
     const handleDataURI = (data) => {
         setDataURI(data);
@@ -22,7 +22,7 @@ const ChatRoom = (props) => {
 
     useEffect(() => {
         if(dataURI){
-            sendMessage(dataURI);
+            sendMessage(dataURI, username);
             setDataURI('');
         }
     }, [dataURI,sendMessage]);
@@ -31,7 +31,7 @@ const ChatRoom = (props) => {
         <div className="is-flex is-flex-direction-column is-clipped h-screen max-h-screen">
             <Navbar roomId={roomId} />
             <Chatbox messages={messages}/>
-            { isShowCanvas && <Canvas handleDataURI={handleDataURI} toggleModal={toggleShowCanvas} canvasHeight={window.innerHeight * 0.27}/>}
+            { isShowCanvas && <Canvas handleDataURI={handleDataURI} toggleModal={toggleShowCanvas} />}
             { !isShowCanvas &&
                 <button
                     onClick={toggleShowCanvas}
