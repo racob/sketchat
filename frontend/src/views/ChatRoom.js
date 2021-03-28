@@ -31,7 +31,7 @@ const ChatRoom = (props) => {
         <div className="is-flex is-flex-direction-column is-clipped h-screen max-h-screen">
             <Navbar roomId={roomId} />
             <Chatbox messages={messages}/>
-            { isShowCanvas && <Canvas handleDataURI={handleDataURI} toggleModal={toggleShowCanvas}/>}
+            { isShowCanvas && <Canvas handleDataURI={handleDataURI} toggleModal={toggleShowCanvas} canvasHeight={window.innerHeight * 0.27}/>}
             { !isShowCanvas &&
                 <button
                     onClick={toggleShowCanvas}

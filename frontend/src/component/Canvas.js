@@ -11,12 +11,12 @@ const Canvas = class extends Component {
         this.state = {
             isShowingColor: false,
             strokeWidth: 4,
-            strokeColor: "black"
+            strokeColor: "black",
         };
     };
-
+    
     render() {
-
+        console.log(this.canvasHeight);
         const styles = {
             border: "0.25rem solid #9c9c9c",
             borderRadius: "0.5rem",
@@ -96,13 +96,16 @@ const Canvas = class extends Component {
                         <FontAwesomeIcon icon={faChevronDown} />
                     </span>
                 </button>
-                <ReactSketchCanvas
-                    ref={this.canvas}
-                    height={window.innerHeight * 0.27}
-                    style={styles}
-                    strokeWidth={this.state.strokeWidth}
-                    strokeColor={this.state.strokeColor}
-                />
+                <div className="is-flex is-justify-content-center">
+                    <ReactSketchCanvas
+                        ref={this.canvas}
+                        height="200px"
+                        width={200 * (4/3)}
+                        style={styles}
+                        strokeWidth={this.state.strokeWidth}
+                        strokeColor={this.state.strokeColor}
+                    />
+                </div>
                 <div className="mt-4 is-flex is-justify-content-space-between">
                     <button
                         onClick={handlePencil}
